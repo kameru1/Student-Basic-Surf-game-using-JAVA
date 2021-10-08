@@ -1,5 +1,4 @@
-package v1;
-
+ 
 public class Game
 { private Room   aCurrentRoom ;
   private Parser aParser      ;
