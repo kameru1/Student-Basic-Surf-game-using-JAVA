@@ -58,6 +58,17 @@ public class Game
           this.aParser=new Parser();
        }  // constructeur par défaut
        
+    private void printLocationInfo()
+    {
+        System.out.println("You are "+aCurrentRoom.getDescription());
+        System.out.print("Exits: ");
+        System.out.print (aCurrentRoom.getExitString());
+        
+    }
+       
+       
+       
+       
        
     public void goRoom( final Command pCommand )
     {   
@@ -66,41 +77,19 @@ public class Game
             return;
         } 
         // s'il n'y a pas de second mot
-        Room vNextRoom=null ;
-        String vDirection= pCommand.getSecondWord() ;
         
-        if (vDirection.equals("north")) {
-            vNextRoom=this.aCurrentRoom.aNorthExit;
-        }
-        else if (vDirection.equals("east")) {
-            vNextRoom=this.aCurrentRoom.aEastExit  ;   
-        }
-        else if ( vDirection.equals("west")) {
-             vNextRoom=this.aCurrentRoom.aWestExit ;    
-        }
-        else if ( vDirection.equals("south")) {
-             vNextRoom=this.aCurrentRoom.aSouthExit; 
-        }
+        String vDirection= pCommand.getSecondWord() ;
+        Room vNextRoom = aCurrentRoom.getExit (vDirection);
+        
         
         if (vNextRoom==null){ 
             System.out.print("There is no way!");
         }
         else { 
+             
             this.aCurrentRoom=vNextRoom;
-            System.out.println("you are "+this.aCurrentRoom.getDescription());
-            System.out.println(" Exits: ");
-            if (this.aCurrentRoom.aNorthExit!=null){
-                System.out.print(" north ");
-            } 
-            if (this.aCurrentRoom.aEastExit!=null){
-                System.out.print(" east " );
-            }    
-            if (this.aCurrentRoom.aWestExit!=null){
-                System.out.print(" west ");
-            }    
-            if (this.aCurrentRoom.aSouthExit!=null){
-                System.out.print(" south ");
-            }    
+            printLocationInfo();
+            
         }
         
     }// commande pour se déplacer dans le jeu
@@ -109,6 +98,7 @@ public class Game
             System.out.println("Welcome to the World of Zuul!");
             System.out.println("World of Zuul is a new, incredibly boring adventure game.");
             System.out.println("Type 'help' if you need help.");
+            printLocationInfo();
           
         } // message au début du jeu
     public void printHelp()

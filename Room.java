@@ -3,10 +3,10 @@
 public class Room
 {
     private String aDescription ;
-    public  Room aNorthExit ;
-    public  Room aEastExit ;
-    public  Room aWestExit ;
-    public  Room aSouthExit ;
+    private  Room aNorthExit ;
+    private  Room aEastExit ;
+    private  Room aWestExit ;
+    private  Room aSouthExit ;
  // Room
 
 public Room (final String pDescription )
@@ -31,5 +31,48 @@ public String getDescription()
      this.aSouthExit=pSouthExit ;
      
       } //modificateurs
+      
+      
+public Room getExit(String pdirection)
+{
+    if ( pdirection.equals("north")){
+        return aNorthExit;
+    }
+    if ( pdirection.equals("east")){
+        return aEastExit;
+    }
+    if ( pdirection.equals("west")){
+        return aWestExit;
+    }
+    if ( pdirection.equals("south")){
+        return aSouthExit;
+    }
+    return null ;
+}// recuperer les sorties d'une room 
+
+public String getExitString()
+{
+     String N="";
+     String E="";
+     String W="";
+     String S="";
+     if(this.getExit("north") != null) {
+             N="north";
+        }
+        if(this.getExit("east") != null) {
+            E= "east ";
+        }
+        if(this.getExit("south") != null) {
+            S="south ";
+        }
+        if(this.getExit("west") != null) {
+            W="west ";
+        }
+        
+     return N+E+W+S ;
 }
+}
+
+
+
  
