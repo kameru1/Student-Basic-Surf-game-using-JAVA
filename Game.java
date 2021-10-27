@@ -1,10 +1,20 @@
- 
+ /**
+     * classe Game qui se contente d'afficher les informations et créé le jeux 
+     * dans lequel on peut agir
+     *  @author  L.kamel
+     * @version 2008.03.30 + 2013.09.15
+     */
 public class Game
 { private Room   aCurrentRoom ;
   private Parser aParser      ;
     
     
-    
+    /**
+     *  créé les pièce du jeu et les connexion entre
+     *  les différentes pièces
+     *  @param void
+     *  @return void
+     */
   private void createRooms()
   {
       
@@ -46,7 +56,11 @@ public class Game
       
     } // procédure createsRoom
       
-    
+    /**
+     * lancement du jeu
+     * @param void
+     * @return void
+     */
       public Game ()
       { 
           this.createRooms() ;
@@ -54,18 +68,27 @@ public class Game
           this.aParser=new Parser();
       }  // constructeur par défaut
        
+      /**
+     * affiche le lieux et les directions de sortie possible
+     * @param void 
+     * @return void
+     */
     private void printLocationInfo()
     {
         System.out.println("You are "+aCurrentRoom.getDescription());
         System.out.print("Exits: ");
         System.out.print (aCurrentRoom.getExitString());
         
-    }
+    }// affiche le lieux et les directions de sortie possible
        
        
        
        
-       
+        /**
+     * commande pour se déplacer dans le jeu
+     * @param prend un parametre de type Command 
+     * @return void 
+     */
     public void goRoom( final Command pCommand )
     {   
         if (pCommand.getSecondWord()==null) { 
@@ -89,6 +112,13 @@ public class Game
         }
         
     }// commande pour se déplacer dans le jeu
+    
+    
+       /**
+     * affiche le message de bienvenue au début du jeu
+     * @param void
+     * @return void 
+     */
     public void printWelcome()
         {
             System.out.println("Welcome to the World of Zuul!");
@@ -97,6 +127,12 @@ public class Game
             printLocationInfo();
           
         } // message au début du jeu
+        
+           /**
+     * affiche des messages d'aides pour le joueur
+     * @param void
+     * @return void 
+     */
     public void printHelp()
     {
         System.out.print("You are lost. You are alone.");
@@ -106,6 +142,12 @@ public class Game
         System.out.print("  go quit help  ");
         
     } //aide pour les joueurs
+    
+       /**
+     *  vérifie si le joueur a taper quit ou non
+     *  @param prend un parametre de type Command
+     * @return retourne un booléen
+     */
     private boolean quit(final Command pCommand)
     {
         if( pCommand.getSecondWord()!=null) {
@@ -116,6 +158,11 @@ public class Game
         return false ;
     } // commande quit
     
+       /**
+     * analyse ce que le joueur écrit sur le clavier
+     * @param prend un parametre de type Command
+     * @return retourne un booléen 
+     */
     private boolean processCommand(final Command pCommand)
     {
         if (pCommand.isUnknown()==true) {
@@ -128,6 +175,12 @@ public class Game
          return false;
    }
    boolean vFinished=false;
+   
+      /**
+     * lance le début du jeu
+     *  @param void
+     * @return void 
+     */
    public void play()
    {
        while (vFinished==false){

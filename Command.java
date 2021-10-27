@@ -1,5 +1,10 @@
  
-
+/**
+     * classe Command qui scan le clavier et récupère ce que l'on
+     * tape pour pouvoir contrôler notre personnage dans le jeu
+     *  @author  L.kamel
+     * @version 2008.03.30 + 2013.09.15
+     */
 public class Command
 { private String aCommandWord ;
   private String aSecondWord  ;
