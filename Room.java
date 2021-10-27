@@ -35,33 +35,12 @@ public Room getExit(String pdirection)
 
 public String getExitString()
 {
-     String N="";
-     String E="";
-     String W="";
-     String S="";
-     String D="";
-     String U="";
-     if(this.getExit("north") != null) {
-             N="north";
-        }
-        if(this.getExit("east") != null) {
-            E= "east ";
-        }
-        if(this.getExit("south") != null) {
-            S="south ";
-        }
-        if(this.getExit("west") != null) {
-            W="west ";
-        }
-        if(this.getExit("down") != null) {
-            D="down ";
-        }
-        if(this.getExit("up") != null) {
-            U="up ";
-        }
-        
-        
-     return N+E+W+S+D+U ;
+     String returnString="Exits:";
+     Set<String> keys = exits.keySet();
+     for(String exit : keys){
+         returnString += " " + exit;
+     }
+     return returnString;
 }//retourne les directions de sorties possible
 }
 
