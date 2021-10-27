@@ -74,6 +74,23 @@ public String getExitString()
      }
      return returnString;
 }//retourne les directions de sorties possible
+
+/**
+   * retourne une longue description de la pièce, de la forme: 
+   *        you are at the beach
+   *     Exits: north west   
+   * @param void
+   * @return retourne une description de la pièce,avec 
+   * les sorties possibles.
+   */ 
+  public String getLongDescription()
+  {
+      return "You are "+aDescription+".\n"+getExitString();
+    }
+
+
+
+
 }
 
 

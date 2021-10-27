@@ -75,9 +75,7 @@ public class Game
      */
     private void printLocationInfo()
     {
-        System.out.println("You are "+aCurrentRoom.getDescription());
-        System.out.print("Exits: ");
-        System.out.print (aCurrentRoom.getExitString());
+        System.out.println(aCurrentRoom.getLongDescription());
         
     }// affiche le lieux et les directions de sortie possible
        
