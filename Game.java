@@ -8,39 +8,35 @@ public class Game
   private void createRooms()
   {
       
-      //Room vOutside= new Room("oustside the main entrance of the university");
-      //Room vTheatre= new Room("in a lecture theatre") ;
-      //Room vPub    = new Room("in the campus pub");
-      //Room vLab    = new Room("in a computing lab");
-      //Room vOffice = new Room(" in the computing admin office") ;
-      
-      Room vStreet0= new Room("you are in the city");
-      Room vStreet0bis= new Room("you are in the city");
-      Room vRoad0= new Room("you are in a gaz station");
-      Room vRoad0bis= new Room("you are in a gaz station");
-      Room vBeach0= new Room("you are at the beach");
-      Room vBeach0bis= new Room("you are at the beach");
-      Room vBoat0= new Room("you are on the boat");
-      Room vBoat0bis= new Room("you are on the boat");
-      
+
+      Room vStreet0= new Room(" in the city");
+      Room vStreet0bis= new Room(" in the city");
+      Room vRoad0= new Room(" in a gaz station");
+      Room vRoad0bis= new Room("in a gaz station");
+      Room vBeach0= new Room(" at the beach");
+      Room vBeach0bis= new Room(" at the beach");
+      Room vBoat0= new Room(" on the boat");
+      Room vBoat0bis= new Room(" on the boat");
+      Room vHole= new Room(" in the hole");
       
       
       
       // déclaration des 5 lieux
    
-      //vPub.setExits(null,vOutside,null,null) ;
-      //vOutside.setExits(null,vTheatre,vPub,vLab);
-      //vTheatre.setExits(null,null,vOutside,null) ;
-      //vLab.setExits(vOutside,vOffice,null,null);
-      //vOffice.setExits(null,null,vLab,null);
       
-      vStreet0.setExits(null,vStreet0bis,null,null) ;
-      vStreet0bis.setExits(null,vRoad0,vStreet0,null) ;
-      vRoad0.setExits(null,vRoad0bis,vStreet0bis,null) ;
-      vRoad0bis.setExits(null,vBeach0,vRoad0,null) ;
-      vBeach0.setExits(null,vBeach0bis,vRoad0bis,null) ;
-      vBeach0bis.setExits(null,null,vBeach0,null) ;
       
+      vStreet0.setExits("east",vStreet0bis) ;
+      vStreet0bis.setExits("east",vRoad0) ;
+      vStreet0bis.setExits("west",vStreet0) ;
+      vRoad0.setExits("east",vRoad0bis) ;
+      vRoad0.setExits("west",vStreet0bis) ;
+      vRoad0bis.setExits("east",vBeach0) ;
+      vRoad0bis.setExits("west",vRoad0) ;
+      vBeach0.setExits("east",vBeach0bis) ;
+      vBeach0.setExits("west",vRoad0bis) ;
+      vBeach0bis.setExits("west",vBeach0) ;
+      vBeach0bis.setExits("down",vBeach0) ;
+      vHole.setExits("up",vBeach0bis);
       
       // position des sorties
       
@@ -51,12 +47,12 @@ public class Game
     } // procédure createsRoom
       
     
-    public Game ()
+      public Game ()
       { 
           this.createRooms() ;
           this.printWelcome();
           this.aParser=new Parser();
-       }  // constructeur par défaut
+      }  // constructeur par défaut
        
     private void printLocationInfo()
     {

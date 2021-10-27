@@ -1,53 +1,36 @@
- 
+import java.util.HashMap;
+import java.util.Set;
 
 public class Room
 {
     private String aDescription ;
-    private  Room aNorthExit ;
-    private  Room aEastExit ;
-    private  Room aWestExit ;
-    private  Room aSouthExit ;
+    private HashMap<String, Room> exits;
  // Room
 
 public Room (final String pDescription )
 {
     this.aDescription= pDescription ;
-    
+    exits= new HashMap<String, Room>();
     
     
 } // constructeur naturel
 
 public String getDescription()
  {
-     return this.aDescription;
+     return aDescription;
      
  }//Accesseur
  
- public void setExits( final Room pNorthExit , final Room pEastExit , final Room pWestExit , final Room pSouthExit )
+ public void setExits(String pDirection , Room pNeighbor )
  {
-     this.aNorthExit=pNorthExit;
-     this.aEastExit=pEastExit ;
-     this.aWestExit=pWestExit ;
-     this.aSouthExit=pSouthExit ;
+     exits.put(pDirection, pNeighbor);
      
       } //modificateurs
       
       
 public Room getExit(String pdirection)
 {
-    if ( pdirection.equals("north")){
-        return aNorthExit;
-    }
-    if ( pdirection.equals("east")){
-        return aEastExit;
-    }
-    if ( pdirection.equals("west")){
-        return aWestExit;
-    }
-    if ( pdirection.equals("south")){
-        return aSouthExit;
-    }
-    return null ;
+    return exits.get(pdirection);
 }// recuperer les sorties d'une room 
 
 public String getExitString()
@@ -56,6 +39,8 @@ public String getExitString()
      String E="";
      String W="";
      String S="";
+     String D="";
+     String U="";
      if(this.getExit("north") != null) {
              N="north";
         }
@@ -68,9 +53,16 @@ public String getExitString()
         if(this.getExit("west") != null) {
             W="west ";
         }
+        if(this.getExit("down") != null) {
+            D="down ";
+        }
+        if(this.getExit("up") != null) {
+            U="up ";
+        }
         
-     return N+E+W+S ;
-}
+        
+     return N+E+W+S+D+U ;
+}//retourne les directions de sorties possible
 }
 
 
