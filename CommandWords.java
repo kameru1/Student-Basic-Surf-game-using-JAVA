@@ -20,10 +20,11 @@ public class CommandWords
      */
     public CommandWords()
     {
-        this.aValidCommands = new String[3];
+        this.aValidCommands = new String[4];
         this.aValidCommands[0] = "go";
         this.aValidCommands[1] = "help";
         this.aValidCommands[2] = "quit";
+        this.aValidCommands[3] = "look";
     } // CommandWords()
 
     /**
@@ -40,4 +41,12 @@ public class CommandWords
         // if we get here, the string was not found in the commands
         return false;
     } // isCommand()
+    
+    //a constant array that holds all valid command words 
+   private static final String ValidCommands[]={
+       "go","quit","help","look"
+    };
+    
+    
+    
 } // CommandWords

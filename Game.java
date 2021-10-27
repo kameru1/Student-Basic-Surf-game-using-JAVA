@@ -165,12 +165,22 @@ public class Game
     {
         if (pCommand.isUnknown()==true) {
             System.out.print("I don't know what you mean...");
-            return false;
+        } 
+        if(pCommand.equals("help")){
+            printHelp();
+            System.out.print("You are lost. You are alone.");
         }
-        else if (quit(pCommand)==true) {
-         return true;}
-        else
-         return false;
+        else if(pCommand.equals("go")){
+            goRoom(pCommand);
+        }
+        else if(pCommand.equals("look")){
+            look();
+        }
+        else if(pCommand.equals("quit")){
+            boolean wantToQuit = quit(pCommand);
+            
+        }
+        return false;
    }
    boolean vFinished=false;
    
@@ -189,5 +199,13 @@ public class Game
        System.out.println("Thank you for playing.  Good bye.");
        
        
-    }    
+    }    //lance le jeu
+    
+    private void look()
+    {
+        System.out.println(aCurrentRoom.getLongDescription());
+    }
+    
+    
+    
 } // Game
