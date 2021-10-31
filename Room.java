@@ -3,23 +3,31 @@ import java.util.Set;
 /**
      * classe room qui créé les pièces du jeux et manipule les données
      *  @author  L.kamel
-     * @version 2008.03.30 + 2013.09.15
+     * @version 2021
      */
 public class Room
 {
     private String aDescription ;
     private HashMap<String, Room> exits;
- // Room
+ // attributs de la classe Room
+ 
+    private HashMap<String, Room> rooms;
+    
+   
+ 
+ 
+ 
 
  /**
    * constructeur naturel de la classe Room qui crée les pièces a l'aide 
    * du hashmap avec une description pour la pièce qu'on veut crée
-   * @param prend un string
+   * @param prend la description de la pièce
    */ 
 public Room (final String pDescription )
 {
     this.aDescription= pDescription ;
     exits= new HashMap<String, Room>();
+    rooms= new HashMap<String, Room>();
     
     
 } // constructeur naturel
@@ -47,6 +55,11 @@ public String getDescription()
      exits.put(pDirection, pNeighbor);
      
       } //modificateurs
+ public void setRooms(String pDescription , Room pRoom )
+ {
+       rooms.put( pDescription, pRoom);
+    }// crée une méthode qui permet de crée 
+    //une hashmap qui contient toute les pièces du jeux
       
       /**
    * accesseur qui permet de récuperer la direction
@@ -86,12 +99,11 @@ public String getExitString()
   public String getLongDescription()
   {
       return "You are "+aDescription+".\n"+getExitString();
-    }
-
-
+    }//retourne la description de la pièce + les sorties
 
 
 }
+
 
 
 

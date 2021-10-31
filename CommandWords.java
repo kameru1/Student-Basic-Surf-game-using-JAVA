@@ -1,36 +1,41 @@
  
 
 /**
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
- * 
- * This class holds an enumeration table of all command words known to the game.
- * It is used to recognise commands as they are typed in.
+ * Cette classe contient une table d’énumération de tous 
+ *les mots de commande connus du jeu.
+ *elle est utilisé pour reconnaître les commandes au fur et à
+ *mesure qu’elles sont tapées.
  *
- * @author  Michael Kolling and David J. Barnes + D.Bureau
- * @version 2008.03.30 + 2019.09.25
+ * @author  L.Kamel
+ * @version 2021
  */
 public class CommandWords
 {
+       //a constant array that holds all valid command words 
+   private static final String aValidCommands[]={
+       "go","quit","help","look" , "eat"
+    };
     // a constant array that will hold all valid command words
-    private final String[] aValidCommands;
+    //private final String[] aValidCommands;
 
     /**
-     * Constructor - initialise the command words.
+     * Constructeur - initialise les commandes .
      */
     public CommandWords()
     {
-        this.aValidCommands = new String[4];
-        this.aValidCommands[0] = "go";
-        this.aValidCommands[1] = "help";
-        this.aValidCommands[2] = "quit";
-        this.aValidCommands[3] = "look";
+        
+        //this.aValidCommands = new String[5];
+        ///this.aValidCommands[0] = "go";
+        //this.aValidCommands[1] = "help";
+        //this.aValidCommands[2] = "quit";
+        //this.aValidCommands[3] = "look";
+        //this.aValidCommands[4] = "eat";
     } // CommandWords()
 
     /**
-     * Check whether a given String is a valid command word. 
-     * @return true if a given string is a valid command,
-     * false if it isn't.
+     * vérifie si pString est une commande valide. 
+     * @return true si pString est une commande valide,
+     * false sinon.
      */
     public boolean isCommand( final String pString )
     {
@@ -41,12 +46,19 @@ public class CommandWords
         // if we get here, the string was not found in the commands
         return false;
     } // isCommand()
+   
     
-    //a constant array that holds all valid command words 
-   private static final String ValidCommands[]={
-       "go","quit","help","look"
-    };
+    /**
+     * affiche toutes les commandes valides
+     */
+    public String getCommandList()
+    {
+        String returnString="";
+        for(String command : aValidCommands){
+            returnString += " " + command;
+            
+        }
+       return returnString;
     
-    
-    
+    }
 } // CommandWords

@@ -1,21 +1,15 @@
- 
+
 import java.util.Scanner;
 
 /**
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ *le parser possède un ensemble de mots de commande connus.
+ *Il vérifie les entrées de l’utilisateur par rapport aux
+ *commandes connues, et si l’entrée n’est pas l’une 
+ *des commandes connues, elle
+ *renvoie comme message "inconnue".
  * 
- * This parser reads user input and tries to interpret it as an "Adventure"
- * command. Every time it is called it reads a line from the terminal and
- * tries to interpret the line as a two word command. It returns the command
- * as an object of class Command.
- *
- * The parser has a set of known command words. It checks user input against
- * the known commands, and if the input is not one of the known commands, it
- * returns a command object that is marked as an unknown command.
- * 
- * @author  Michael Kolling and David J. Barnes + D.Bureau
- * @version 2008.03.30 + 2013.09.15
+ * @author  L.Kamel
+ * @version 2021
  */
 public class Parser 
 {
@@ -23,7 +17,7 @@ public class Parser
     private Scanner      aReader;         // permettra de lire les commandes au clavier
 
     /**
-     * Constructeur par defaut qui cree les 2 objets prevus pour les attributs
+     * Constructeur par défaut qui crée les 2 objets prevus pour les attributs
      */
     public Parser() 
     {
@@ -33,7 +27,8 @@ public class Parser
     } // Parser()
 
     /**
-     * @return The next command from the user.
+     * @param void
+     * @return retourne la commande suivante de l’utilisateur
      */
     public Command getCommand() 
     {
@@ -64,4 +59,13 @@ public class Parser
             return new Command( null, null ); // C'est surtout le premier null qui est important ici.
         }
     } // getCommand()
+    /**
+     * affiche la liste des commandes valides
+     */
+    public String showCommands()
+    {
+        return aValidCommands.getCommandList();
+        
+    }
+    
 } // Parser

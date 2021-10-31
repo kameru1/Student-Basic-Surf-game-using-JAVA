@@ -1,16 +1,17 @@
  /**
      * classe Game qui se contente d'afficher les informations et créé le jeux 
-     * dans lequel on peut agir
+     * dans lequel on peut agir dans le jeu
      *  @author  L.kamel
-     * @version 2008.03.30 + 2013.09.15
+     * @version 2021
      */
 public class Game
 { private Room   aCurrentRoom ;
   private Parser aParser      ;
+  //les attributs (privés toujours)
     
     
     /**
-     *  créé les pièce du jeu et les connexion entre
+     *  créé les pièces du jeu et les connexions entre
      *  les différentes pièces
      *  @param void
      *  @return void
@@ -29,9 +30,9 @@ public class Game
       Room vBoat0bis= new Room(" on the boat");
       Room vHole= new Room(" in the hole");
       
+     
       
-      
-      // déclaration des 5 lieux
+      // déclaration des  lieux
    
       
       
@@ -45,10 +46,23 @@ public class Game
       vBeach0.setExits("east",vBeach0bis) ;
       vBeach0.setExits("west",vRoad0bis) ;
       vBeach0bis.setExits("west",vBeach0) ;
-      vBeach0bis.setExits("down",vBeach0) ;
+      vBeach0bis.setExits("down",vHole) ;
       vHole.setExits("up",vBeach0bis);
       
       // position des sorties
+      
+      vStreet0.setRooms("in the city",vStreet0bis) ;
+      vStreet0bis.setRooms("in the city",vStreet0bis) ;
+      vRoad0.setRooms("in a gaz station",vRoad0) ;
+      vRoad0bis.setRooms("in a gaz station",vRoad0bis) ;
+      vBeach0.setRooms("at the beach",vBeach0) ;
+      vBeach0bis.setRooms("at the beach",vBeach0bis) ;
+      vHole.setRooms("in the hole",vHole);
+      vBoat0.setRooms("on the boat",vBoat0);
+      vBoat0bis.setRooms("on the boat",vBoat0bis);
+ 
+      
+      // rempli le hashmap avec toutes les rooms dedans
       
       this.aCurrentRoom=vBeach0bis ;
       
@@ -69,7 +83,7 @@ public class Game
       }  // constructeur par défaut
        
       /**
-     * affiche le lieux et les directions de sortie possible
+     * affiche le lieu et les directions de sorties possibles
      * @param void 
      * @return void
      */
@@ -84,7 +98,7 @@ public class Game
        
         /**
      * commande pour se déplacer dans le jeu
-     * @param prend un parametre de type Command 
+     * @param prend un paramètre de type Command 
      * @return void 
      */
     public void goRoom( final Command pCommand )
@@ -119,8 +133,8 @@ public class Game
      */
     public void printWelcome()
         {
-            System.out.println("Welcome to the World of Zuul!");
-            System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+            System.out.println("Welcome to the Surf-man World ");
+            System.out.println("World of Surf-man is a new, incredibly boring adventure game.");
             System.out.println("Type 'help' if you need help.");
             printLocationInfo();
           
@@ -133,11 +147,10 @@ public class Game
      */
     public void printHelp()
     {
-        System.out.print("You are lost. You are alone.");
+        System.out.println("You are lost. You are alone.");
         System.out.println("You wander around at the beach.");
         System.out.println("Your command words are:  ");
-        
-        System.out.print("  go quit help  ");
+        System.out.println(aParser.showCommands());
         
     } //aide pour les joueurs
     
@@ -166,22 +179,25 @@ public class Game
         if (pCommand.isUnknown()==true) {
             System.out.print("I don't know what you mean...");
         } 
-        if(pCommand.equals("help")){
+        else if(pCommand.getCommandWord().equals("help")){
             printHelp();
-            System.out.print("You are lost. You are alone.");
         }
-        else if(pCommand.equals("go")){
+        else if(pCommand.getCommandWord().equals("go")){
             goRoom(pCommand);
         }
-        else if(pCommand.equals("look")){
+        else if(pCommand.getCommandWord().equals("look")){
             look();
         }
-        else if(pCommand.equals("quit")){
+        else if(pCommand.getCommandWord().equals("quit")){
             boolean wantToQuit = quit(pCommand);
-            
+        }
+        
+        else if(pCommand.getCommandWord().equals("eat")){
+            eat();
         }
         return false;
-   }
+    }// effectue une méthode en fonction de la commande taper
+   
    boolean vFinished=false;
    
       /**
@@ -201,11 +217,25 @@ public class Game
        
     }    //lance le jeu
     
+     /**
+     * renvoi la description de la pièce dans 
+     * laquelle on se trouve
+     *  @param void
+     * @return void 
+     */
     private void look()
     {
         System.out.println(aCurrentRoom.getLongDescription());
-    }
+    } // description de la pièce courante
     
-    
+     /**
+     * affiche le messages qui nous indique que l'on a mangé
+     *  @param void
+     * @return void 
+     */
+    private void eat()
+    {
+        System.out.println("You have eaten now and you are not hungry any more");
+    }// action manger
     
 } // Game
