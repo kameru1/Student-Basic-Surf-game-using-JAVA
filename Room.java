@@ -12,7 +12,7 @@ public class Room
  // attributs de la classe Room
  
     private HashMap<String, Room> rooms;
-    
+    private String aImageName;
    
  
  
@@ -23,11 +23,12 @@ public class Room
    * du hashmap avec une description pour la pièce qu'on veut crée
    * @param prend la description de la pièce
    */ 
-public Room (final String pDescription )
+public Room (final String pDescription, final String pImage )
 {
     this.aDescription= pDescription ;
     exits= new HashMap<String, Room>();
     rooms= new HashMap<String, Room>();
+    this.aImageName = pImage;
     
     
 } // constructeur naturel
@@ -101,6 +102,15 @@ public String getExitString()
       return "You are "+aDescription+".\n"+getExitString();
     }//retourne la description de la pièce + les sorties
 
+    /**
+   * retourne le nom de l'image
+   * @param void
+   * @return retourne le nom de l'image
+   */ 
+     public String getImageName()
+     {
+         return this.aImageName;
+     }
 
 }
 
