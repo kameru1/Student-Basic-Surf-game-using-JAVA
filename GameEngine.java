@@ -30,7 +30,7 @@ public class GameEngine
 
       Room vStreet0= new Room(" in the city","city0.gif");
       Room vStreet0bis= new Room(" in the city","city1.gif");
-      Room vRoad0= new Room(" in a gaz station","gaz0.gif");
+      Room vRoad0= new Room(" on the road","road.gif");
       Room vRoad0bis= new Room("in a gaz station","gaz1.gif");
       Room vBeach0= new Room(" at the beach","beach0.gif");
       Room vBeach0bis= new Room(" at the beach","beach1.gif");
