@@ -1,8 +1,19 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
 import java.net.URL;
-import java.awt.image.*;
+
 /**
  *This class implements a simple graphical user interface with a text entry
  * area, a text output area and an optional image.
@@ -17,7 +28,8 @@ public class UserInterface implements ActionListener
     private JTextField aEntryField;
     private JTextArea  aLog;
     private JLabel     aImage;
-
+    private JButton    aButton;
+    
     /**
      * Construct a UserInterface. As a parameter, a Game Engine
      * (an object processing and executing the game commands) is
@@ -81,9 +93,10 @@ public class UserInterface implements ActionListener
      */
     private void createGUI()
     {
-        this.aMyFrame = new JFrame( "Zork" ); // change the title
+        this.aMyFrame = new JFrame( "Beach" ); // change the title
         this.aEntryField = new JTextField( 34 );
-
+        this.aButton = new JButton("mon bouton");
+        
         this.aLog = new JTextArea();
         this.aLog.setEditable( false );
         JScrollPane vListScroller = new JScrollPane( this.aLog );
@@ -97,11 +110,13 @@ public class UserInterface implements ActionListener
         vPanel.add( this.aImage, BorderLayout.NORTH );
         vPanel.add( vListScroller, BorderLayout.CENTER );
         vPanel.add( this.aEntryField, BorderLayout.SOUTH );
-
+        vPanel.add( this.aButton , BorderLayout.WEST );
+        
         this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
 
         // add some event listeners to some components
         this.aEntryField.addActionListener( this );
+        this.aButton.addActionListener( this );
 
         // to end program when window is closed
         this.aMyFrame.addWindowListener( new WindowAdapter() {
@@ -118,9 +133,13 @@ public class UserInterface implements ActionListener
      */
     public void actionPerformed( final ActionEvent pE ) 
     {
-        // no need to check the type of action at the moment
-        // because there is only one possible action (text input) :
-        this.processCommand(); // never suppress this line
+        
+       if(pE.getSource()!=null){
+           System.out.println(pE.getActionCommand());
+        }
+        
+           this.processCommand();
+    
     } // actionPerformed(.)
 
     /**
