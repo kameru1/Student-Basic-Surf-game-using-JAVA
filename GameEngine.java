@@ -45,14 +45,14 @@ public class GameEngine
       
       
       vStreet0.setExits("east",vStreet0bis) ;
-      vStreet0bis.setExits("east",vRoad0) ;
+      vStreet0bis.setExits("east",vRoad0bis) ;
       vStreet0bis.setExits("west",vStreet0) ;
-      vRoad0.setExits("east",vRoad0bis) ;
-      vRoad0.setExits("west",vStreet0bis) ;
-      vRoad0bis.setExits("east",vBeach0) ;
-      vRoad0bis.setExits("west",vRoad0) ;
+      vRoad0.setExits("east",vBeach0) ;
+      vRoad0.setExits("west",vRoad0bis) ;
+      vRoad0bis.setExits("east",vRoad0) ;
+      vRoad0bis.setExits("west",vStreet0bis) ;
       vBeach0.setExits("east",vBeach0bis) ;
-      vBeach0.setExits("west",vRoad0bis) ;
+      vBeach0.setExits("west",vRoad0) ;
       vBeach0bis.setExits("west",vBeach0) ;
       vBeach0bis.setExits("down",vHole) ;
       vHole.setExits("up",vBeach0bis);
