@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.io.FileNotFoundException;
 
 /**
  *This class implements a simple graphical user interface with a text entry
@@ -34,8 +35,7 @@ public class UserInterface implements ActionListener
      * Construct a UserInterface. As a parameter, a Game Engine
      * (an object processing and executing the game commands) is
      * needed.
-     * 
-     * @param gameEngine  The GameEngine object implementing the game logic.
+     * @param pGameEngine
      */
     public UserInterface( final GameEngine pGameEngine )
     {
@@ -45,6 +45,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area.
+     * @param pText
      */
     public void print( final String pText )
     {
@@ -54,6 +55,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area, followed by a line break.
+     * @param pText
      */
     public void println( final String pText )
     {
@@ -62,6 +64,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Show an image file in the interface.
+     * @param pImageName
      */
     public void showImage( final String pImageName )
     {
@@ -76,8 +79,10 @@ public class UserInterface implements ActionListener
         }
     } // showImage(.)
 
+    
     /**
      * Enable or disable input in the input field.
+     *@param pOnOff
      */
     public void enable( final boolean pOnOff )
     {
@@ -134,19 +139,21 @@ public class UserInterface implements ActionListener
     public void actionPerformed( final ActionEvent pE ) 
     {
         
-       if(pE.getSource()!=null){
+        if(pE.getSource()!=null){
            System.out.println(pE.getActionCommand());
         }
         
            this.processCommand();
     
     } // actionPerformed(.)
+    
 
     /**
      * A command has been entered. Read the command and do whatever is 
      * necessary to process it.
      */
-    private void processCommand()
+    private void processCommand() 
+    
     {
         String vInput = this.aEntryField.getText();
         this.aEntryField.setText( "" );

@@ -13,15 +13,16 @@ public class Room
  
     private HashMap<String, Room> rooms;
     private String aImageName;
-   
- 
- 
+    private Item aItem;
+    private HashMap<String, Item> Items ;
+    
  
 
  /**
    * constructeur naturel de la classe Room qui crée les pièces a l'aide 
    * du hashmap avec une description pour la pièce qu'on veut crée
-   * @param prend la description de la pièce
+   * @param pDescription
+   * @param pImage
    */ 
 public Room (final String pDescription, final String pImage )
 {
@@ -29,14 +30,41 @@ public Room (final String pDescription, final String pImage )
     exits= new HashMap<String, Room>();
     rooms= new HashMap<String, Room>();
     this.aImageName = pImage;
-    
-    
+    Items= new HashMap<String, Item>();
+    this.aItem=new Item("","",0);
 } // constructeur naturel
 
+ /**
+   * permet de créée des items
+   * @param pString
+   * @param pDes
+   * @param pPoid
+   */ 
+ public void setItem(final String pString,final String pDes,final int pPoid)
+    {
+        Item vItem=new Item(pString, pDes, pPoid);
+        Items.put(pString,vItem);
+                  
+    }// modificateur
+    
+     /**
+   * permet de récupérer la description de l'item
+   * @return String
+   */ 
+       public String getItemString()
+       {
+        StringBuilder returnString=new StringBuilder("Items :\n");
+          for(Item vS : Items.values()){
+         
+            returnString.append(vS.getItemName()+"\n"+vS.getItemDes()+"\n"+vS.getItemPrix()+"\n");
+          }
+           return returnString.toString();
+        
+       }
+    
 /**
    * accesseur qui permet de récuperer le string contenue dans la Room
    * que l'on veut
-   * @param void
    * @return string "description"
    */ 
 public String getDescription()
@@ -44,18 +72,25 @@ public String getDescription()
      return aDescription;
      
  }//Accesseur
+ 
+
  /**
    * cette méthode permet de définir les sorties de chaques pièces
    * donc de crée la carte du jeu
-   * @param prend un string "la direction" et un Room
-   * (la pièce a côté).
-   * @return void
+   * @param pDirection
+   * @param pNeighbor
    */ 
  public void setExits(String pDirection , Room pNeighbor )
  {
      exits.put(pDirection, pNeighbor);
      
       } //modificateurs
+      
+  /** crée une méthode qui permet de crée 
+    *une hashmap qui contient toute les pièces du jeux
+    * @param pDescription
+    * @param pRoom
+    */ 
  public void setRooms(String pDescription , Room pRoom )
  {
        rooms.put( pDescription, pRoom);
@@ -65,19 +100,49 @@ public String getDescription()
       /**
    * accesseur qui permet de récuperer la direction
    * sous forme de string
-   * @param prend un string "la direction"
-   * @return un string "une direction"
+   * @param pdirection
+   * @return Room
    */ 
 public Room getExit(String pdirection)
 {
     return exits.get(pdirection);
 }// recuperer les sorties d'une room 
 
+
+  /**
+   * accesseur de la HashMap items
+   * @return HashMap
+   */ 
+public HashMap getItems(){
+    return Items;
+    
+}
+
+  /**
+   * ajoute des items au HashMap Items
+   * @param pString
+   * @param pItem
+   */ 
+public void addItem(final String pString,final Item pItem)
+{
+    Items.put(pString,pItem);
+    
+}
+
+/**
+   * enlève des items au HashMap Items
+   * @param pString
+   */ 
+public void removeItem(final String pString){
+    Items.remove(pString);
+    
+}
+
+
 /**
    * méthode qui permet de recupérer les directions possibles d'une
    * pièce
-   * @param void
-   * @return un string qui est l'ensemble des directions possibles
+   * @return String
    */ 
 public String getExitString()
 {
@@ -93,19 +158,16 @@ public String getExitString()
    * retourne une longue description de la pièce, de la forme: 
    *        you are at the beach
    *     Exits: north west   
-   * @param void
-   * @return retourne une description de la pièce,avec 
-   * les sorties possibles.
+   * @return String
    */ 
   public String getLongDescription()
   {
-      return "You are "+aDescription+".\n"+getExitString();
+      return "You are "+aDescription+".\n"+getExitString()+"\n"+getItemString()+"\n";
     }//retourne la description de la pièce + les sorties
 
     /**
    * retourne le nom de l'image
-   * @param void
-   * @return retourne le nom de l'image
+   * @return String
    */ 
      public String getImageName()
      {

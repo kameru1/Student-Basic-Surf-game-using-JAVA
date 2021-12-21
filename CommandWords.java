@@ -13,7 +13,8 @@ public class CommandWords
 {
        //a constant array that holds all valid command words 
    private static final String aValidCommands[]={
-       "go","quit","help","look" , "eat"
+       "go","quit","help","look" , "eat","back","test",
+       "take","drop"
     };
     // a constant array that will hold all valid command words
     //private final String[] aValidCommands;
@@ -34,6 +35,7 @@ public class CommandWords
 
     /**
      * vérifie si pString est une commande valide. 
+     * @param pString
      * @return true si pString est une commande valide,
      * false sinon.
      */
@@ -49,6 +51,7 @@ public class CommandWords
    
     
     /**
+     * @return
      * affiche toutes les commandes valides
      */
     public String getCommandList()

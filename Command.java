@@ -12,21 +12,19 @@ public class Command
     
   /**
    * constructeur naturel de la classe Command
-   * @param 2 String qui correspond au 2 mots tapés
+   * @param pCommandWord
+   * @param pSecondWord
    */ 
   public Command ( final String pCommandWord , final String pSecondWord )
   {
       this.aCommandWord=pCommandWord ;
       this.aSecondWord= pSecondWord ;
       
-      
-      
     }// Constructeur Naturel
     
   /**
    * accesseur qui permet de récuperer le string du premier mot
-   * @param void
-   * @return string premier mot tapé
+   * @return String 
    */   
   public String getCommandWord()
   {
@@ -37,7 +35,6 @@ public class Command
   /**
    * accesseur qui permet de récuperer 
    * le string du deuxième mot tapé
-   * @param void
    * @return string deuxième mot tapé
    */ 
   public String getSecondWord()
@@ -46,22 +43,20 @@ public class Command
     
   /**
    * vérifie si il y a un second mot
-   * @param void
    * @return retourne un booléen
    */   
   public boolean hasSecondWord()
   {    
        return this.aSecondWord!=null;
-      
-      
-    }// fonction booléen
+   
+  }// fonction booléen
+    
     /**
-   * vérifie si le premier mot est une commande connu du jeu
-   * @param void
-   * @return retourne un booléen
-   */ 
+    * vérifie si le premier mot est une commande connu du jeu
+    * @return retourne un booléen
+    */ 
   public boolean isUnknown()
   {
       return this.aCommandWord==null ;
-    }
+  }
 } // Command
