@@ -25,7 +25,7 @@ public class Parser
     } // Parser()
 
     /**
-     * @param void
+     * @param pInputLine
      * @return retourne la commande suivante de l’utilisateur
      */
     public Command getCommand( final String pInputLine) 
@@ -57,6 +57,7 @@ public class Parser
      // getCommand()
     /**
      * affiche la liste des commandes valides
+     * @return String
      */
     public String getCommandString()
     {

@@ -9,10 +9,10 @@
  *  This main class creates the necessary implementation objects and starts the game off.
  * 
  * @author  Kamel.L
- * @version 2021
+ * @version 2021 
  */
 
-public class Game
+public class Game 
 {
 	private UserInterface aGui;
 	private GameEngine aEngine;

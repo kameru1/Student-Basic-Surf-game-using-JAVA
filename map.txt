@@ -1,0 +1,24 @@
+first path
+CurrentRoom:
+go west.
+go west.
+go west.
+go west.
+go west.
+
+second path:
+CurrentRoom:
+go down.
+go down.
+go down.
+go down.
+go down.
+
+third path:
+go down.
+go down.
+go down.
+go east.
+go east.
+go down.
+
