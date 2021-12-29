@@ -17,7 +17,6 @@ public class ItemList
     public ItemList(){
         aItems= new HashMap<String, Item>();
         
-        
     }
     
         /**

@@ -10,24 +10,42 @@ public class Player
 {
     private Room aCurrentRoom;
     private Stack<Room> aBackRoom;
-
-    //private HashMap<String,Item> aItemSac;
     private String pNomPlayer;
     private ItemList aSac;
-
+    private int aMax=100;
+    private int aPas; 
     /**
      * constructeur de la classe Player
-     *
      * @param pName
      */
     public Player(final String pName)
     {
         this.pNomPlayer=pName;
         this.aBackRoom=new Stack();
-        //this.aItemSac=new HashMap();
+        //this.aItemSac=new HashMap(); 
+        this.aPas=1;
         this.aSac=new ItemList();
     }
 
+    /**
+     * accesseur de l'entier aMax
+     *
+     * @return int
+     */
+    public int getMax(){
+        return this.aMax;
+    }
+    
+    
+     /**
+     * modificateur de l'entier aMax
+     *@param pInt
+     */
+    public void setMax(final int pInt){
+        this.aMax=pInt;
+    }
+    
+    
     /**
      * accesseur de la hashmap aItemSac
      *
@@ -46,9 +64,18 @@ public class Player
     public void changeRoom(final Room pRoom){
         this.aBackRoom.push(this.aCurrentRoom);
         this.aCurrentRoom=pRoom;
-
+        this.aPas=aPas+1;
     }
 
+    /**
+     *accesseur du nb de pas
+     * @return int
+     */
+    public int getPas(){
+        return this.aPas;
+
+    }
+    
     /**
      *permet de retourner en arrière
      * 
@@ -90,7 +117,9 @@ public class Player
      * 
      */
     public void ptake(final String pItemName,final Item pItem){
-        aSac.addItem(pItemName,pItem);
+        
+        {
+         this.aSac.addItem(pItemName,pItem);}
     }
 
     /**
@@ -98,7 +127,7 @@ public class Player
      * 
      */
     public void pdrop(final String pString){
-        aSac.removeItem(pString);
+        this.aSac.removeItem(pString);
 
     }
  

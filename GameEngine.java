@@ -2,6 +2,7 @@ import java.util.Stack;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Set;
 /**
  * classe Game qui se contente d'affichée les informations et créée le jeu 
  * dans lequel on peut agir 
@@ -13,7 +14,7 @@ public class GameEngine
 {
 
     private Player aPlayer      ;
-    
+
     private Parser aParser      ;
     private UserInterface aGui  ;
 
@@ -55,7 +56,6 @@ public class GameEngine
 
         // déclaration des  lieux
 
-      
         vStreet0.setExits("east",vStreet0bis) ;
         vStreet0bis.setExits("east",vRoad0bis) ;
         vStreet0bis.setExits("west",vStreet0) ;
@@ -106,10 +106,11 @@ public class GameEngine
         // initialise le lieu courant
 
         // les items
-      
-        vBeach0bis.setItem("board1","ceci est la première planche de surf!!!",10);
-        vBeach0.setItem("board2","ceci est la deuxième planche de surf!!!",10);
+
+        vBeach0bis.setItem("board1","ceci est la première planche de surf!!!",101);
+        vBeach0.setItem("board2","ceci est la deuxième planche de surf!!!",50);
         vBeach0.setItem("coquillage","uwu",0);
+        vNoir.setItem("magiccookie","nani?? masaka!!",10);
     } // procédure createsRoom
 
     /**
@@ -131,39 +132,34 @@ public class GameEngine
 
     }// affiche le lieux et les directions de sortie possible
 
-       
     /**
      * commande pour se déplacer dans le jeu
      * @param pCommand
      */
     public void goRoom( final Command pCommand )
     {   
-        if (pCommand.getSecondWord()==null) { 
+
+         if (pCommand.getSecondWord()==null) { 
             System.out.print("Go where ?");
             return;
-        } 
+         } 
         // s'il n'y a pas de second mot
-
         String vDirection= pCommand.getSecondWord() ;
         Room vNextRoom = this.aPlayer.getCurrentRoom().getExit (vDirection);
 
-        if (vNextRoom==null){ 
+         if (vNextRoom==null){ 
             this.aGui.println("There is no way!");
-        }
+         }
 
         else { 
-
+            this.aGui.println("pas="+this.aPlayer.getPas());
             this.aPlayer.changeRoom(vNextRoom);
-
             printLocationInfo();
             if ( this.aPlayer.getCurrentRoom().getImageName() != null )
                 this.aGui.showImage( this.aPlayer.getCurrentRoom().getImageName() );
 
-            
         }
-
     }// commande pour se déplacer dans le jeu
-
     /**
      * affiche le message de bienvenue au début du jeu
      */
@@ -219,7 +215,12 @@ public class GameEngine
 
         String vDirection= vCommand.getSecondWord();
         Room vNextRoom = this.aPlayer.getCurrentRoom().getExit (vDirection);
-
+        
+        if(this.aPlayer.getPas()>5){
+            this.aGui.println( "Stop :((" );
+            return;
+        }
+        
         if (vCommand.isUnknown() ) {
             this.aGui.println("I don't know what you mean...");
         } 
@@ -234,6 +235,7 @@ public class GameEngine
         }
         else if(vCommandWord.equals("go")){
             goRoom(vCommand);
+            
         }
         else if(vCommandWord.equals("look")){
             look();
@@ -260,6 +262,7 @@ public class GameEngine
         }
         else if(vCommandWord.equals("take"))
         {
+
             take(vCommand);
         }
         else if(vCommandWord.equals("drop"))
@@ -267,24 +270,44 @@ public class GameEngine
             drop(vCommand);
         }
         else if(vCommandWord.equals("eat")){
-            eat();
+            eat(vCommand);
+        }
+        else if(vCommandWord.equals("items")){
+            this.aGui.println( inv() );
         }
         else
             this.endGame();
-
+        
     }// effectue une méthode en fonction de la commande taper
-    
+
+    /** permet d'afficher les items 
+     * dans l'inventaire du joueur
+     * @return String
+     **/
+    public String inv()
+    {
+        String returnstring="";
+        Set<String> keys = this.aPlayer.getItemSac().keySet();
+        for (String vS:keys){
+            returnstring+=" "+vS;
+        }
+        return returnstring;
+    }
+
     /** permet de prendre un item
      * @param pCommand
-    **/
+     **/
     public void take(final Command pCommand){
         if (!pCommand.hasSecondWord())
             this.aGui.println("take what???");
+
         else{
             String vItemString=pCommand.getSecondWord();
             Room vPlayerRoom= this.aPlayer.getCurrentRoom();
             Item vItem=(Item)vPlayerRoom.getItems().get(vItemString);
-
+            if(this.aPlayer.getMax()<vItem.getItemPrix())
+            {   this.aGui.println("not enought money :((");
+                return;} 
             if (vItem==null)
                 this.aGui.println("There no items here");
             else{
@@ -294,13 +317,14 @@ public class GameEngine
             }
         }
     }
-    
-     /** permet d'enlever un item
+
+    /** permet d'enlever un item
      * @param pCommand
-    **/
+     **/
     public void drop(final Command pCommand){
         if (!pCommand.hasSecondWord())
             this.aGui.println("drop what???");
+
         else{
             String vItemString=pCommand.getSecondWord();
             Room vPlayerRoom= this.aPlayer.getCurrentRoom();
@@ -314,10 +338,12 @@ public class GameEngine
 
             }
         }
+
     }
+
     /** permet de lire un fichier 
      * @param pG
-    **/
+     **/
     public void lecture( final Command pG )
     {
         Scanner vSc;
@@ -353,9 +379,20 @@ public class GameEngine
     /**
      * affiche le messages qui nous indique que l'on a mangé
      */
-    private void eat()
+    private void eat(final Command pCommand)
     {
-        System.out.println("You have eaten now and you are not hungry any more");
+        if (!pCommand.hasSecondWord()){
+            this.aGui.println("eat what? :)");
+            return;
+        }
+        String vItemString=pCommand.getSecondWord();
+        if(vItemString.equals("magiccookie")){
+            this.aGui.println("You have eaten now and you are not hungry any more");
+            this.aPlayer.setMax(this.aPlayer.getMax()*2);
+        }
+        else {
+            this.aGui.println("can't find that ;(");
+        }
     }// action manger
 
     /**
