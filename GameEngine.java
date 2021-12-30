@@ -294,6 +294,11 @@ public class GameEngine
 
     }// effectue une méthode en fonction de la commande taper
 
+    /** renvoie vrai si la pièce passer en paramètre 
+     * est la pièce piège. sinon renvoie faux
+     * @param pRoom
+     * @return boolean
+     **/
     public boolean isExit(final Room pRoom)
     {
         if(pRoom.getDescription()== "on a jetski"){
