@@ -53,6 +53,7 @@ public class GameEngine
         Room vsanc=new Room("at the tunnel spirit Sanctuary","sanctuary.gif");
         Room vNoir=new Room("at the tunnel spirit Sanctuary","noir.gif");
         Room vHolend=new Room("out of the hole","hole_end.gif");
+        Room vTrap=new Room("on a jetski","jetski.gif");
 
         // déclaration des  lieux
 
@@ -87,6 +88,12 @@ public class GameEngine
         vHolend.setExits("up", vBeach0);
         vHolend.setExits("down",vHole21);
 
+        vHole.setExits("east",vTrap);
+        vTrap.setExits("east",vBoat0);
+        vTrap.setExits("west",vHole);
+        vBoat0.setExits("west",vTrap);
+        vBoat0.setExits("east",vBoat0bis);
+        vBoat0bis.setExits("west",vBoat0);
         // position des sorties
 
         vStreet0.setRooms("in the city",vStreet0bis) ;
@@ -139,20 +146,22 @@ public class GameEngine
     public void goRoom( final Command pCommand )
     {   
 
-         if (pCommand.getSecondWord()==null) { 
+        if (pCommand.getSecondWord()==null) { 
             System.out.print("Go where ?");
             return;
-         } 
+        } 
         // s'il n'y a pas de second mot
         String vDirection= pCommand.getSecondWord() ;
         Room vNextRoom = this.aPlayer.getCurrentRoom().getExit (vDirection);
 
-         if (vNextRoom==null){ 
+        if (vNextRoom==null){ 
             this.aGui.println("There is no way!");
-         }
+        }
 
         else { 
             this.aGui.println("pas="+this.aPlayer.getPas());
+            this.aGui.println("");
+
             this.aPlayer.changeRoom(vNextRoom);
             printLocationInfo();
             if ( this.aPlayer.getCurrentRoom().getImageName() != null )
@@ -215,12 +224,12 @@ public class GameEngine
 
         String vDirection= vCommand.getSecondWord();
         Room vNextRoom = this.aPlayer.getCurrentRoom().getExit (vDirection);
-        
+
         if(this.aPlayer.getPas()>5){
             this.aGui.println( "Stop :((" );
             return;
         }
-        
+
         if (vCommand.isUnknown() ) {
             this.aGui.println("I don't know what you mean...");
         } 
@@ -234,9 +243,14 @@ public class GameEngine
             }
         }
         else if(vCommandWord.equals("go")){
-            goRoom(vCommand);
-            
-        }
+            if(isExit(this.aPlayer.getCurrentRoom())){
+                if(vDirection.equals("west")){
+                    this.aGui.println("There is no way!");
+                    return;
+                }
+            }
+             goRoom(vCommand);
+            }
         else if(vCommandWord.equals("look")){
             look();
         }
@@ -277,8 +291,18 @@ public class GameEngine
         }
         else
             this.endGame();
-        
+
     }// effectue une méthode en fonction de la commande taper
+
+    public boolean isExit(final Room pRoom)
+    {
+        if(pRoom.getDescription()== "on a jetski"){
+            this.aPlayer.getStack().clear();
+            return true;
+        }
+        else
+          return false;
+    }
 
     /** permet d'afficher les items 
      * dans l'inventaire du joueur
@@ -373,7 +397,7 @@ public class GameEngine
      */
     private void look()
     {
-        System.out.println( this.aPlayer.getCurrentRoom().getLongDescription());
+        this.aGui.println( this.aPlayer.getCurrentRoom().getLongDescription());
     } // description de la pièce courante
 
     /**
