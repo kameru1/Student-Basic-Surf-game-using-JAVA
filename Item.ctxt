@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Item
+comment0.text=\r\n\ class\ Item\ \r\n\r\n\ @author\ (Kamel\ L)\r\n\ @version\ (2021)\r\n
+comment1.params=pNom\ pDes\ pPoid
+comment1.target=Item(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\r\nconstructeur\ de\ la\ classe\ Item\r\n\ @param\ pNom\r\n\ @param\ pDes\r\n\ @param\ pPoid\r\n
+comment2.params=
+comment2.target=java.lang.String\ getItemName()
+comment2.text=\r\nconstructeur\ de\ la\ classe\ Item\r\n@return\ String\r\n
+comment3.params=
+comment3.target=java.lang.String\ getItemDes()
+comment3.text=\r\nconstructeur\ de\ la\ classe\ Item\r\n@return\ String\r\n
+comment4.params=
+comment4.target=int\ getItemPrix()
+comment4.text=\r\nconstructeur\ de\ la\ classe\ Item\r\n@return\ int\r\n
+numComments=5

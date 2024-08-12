@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=CommandWords
+comment0.text=\r\n\ Cette\ classe\ contient\ une\ table\ d\u2019\u00E9num\u00E9ration\ de\ tous\ \r\nles\ mots\ de\ commande\ connus\ du\ jeu.\r\nelle\ est\ utilis\u00E9\ pour\ reconna\u00EEtre\ les\ commandes\ au\ fur\ et\ \u00E0\r\nmesure\ qu\u2019elles\ sont\ tap\u00E9es.\r\n\r\n\ @author\ \ L.Kamel\r\n\ @version\ 2021\r\n
+comment1.params=
+comment1.target=CommandWords()
+comment1.text=\r\n\ Constructeur\ -\ initialise\ les\ commandes\ .\r\n
+comment2.params=pString
+comment2.target=boolean\ isCommand(java.lang.String)
+comment2.text=\r\n\ v\u00E9rifie\ si\ pString\ est\ une\ commande\ valide.\ \r\n\ @param\ pString\r\n\ @return\ true\ si\ pString\ est\ une\ commande\ valide,\r\n\ false\ sinon.\r\n
+comment3.params=
+comment3.target=java.lang.String\ getCommandList()
+comment3.text=\r\n\ @return\r\n\ affiche\ toutes\ les\ commandes\ valides\r\n
+numComments=4

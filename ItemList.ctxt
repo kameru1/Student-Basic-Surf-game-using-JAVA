@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=ItemList
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ItemList\ here.\r\n\r\n\ @author\ (Kamel)\r\n\ @version\ (2021)\r\n
+comment1.params=
+comment1.target=ItemList()
+comment1.text=\r\n\ constructeur\ de\ la\ classe\ ItemList\r\n\ \r\n
+comment2.params=
+comment2.target=java.util.HashMap\ getIt()
+comment2.text=\r\n\ accesseur\ pour\ r\u00E9cup\u00E9rer\ la\ hashmap\r\n\ @return\ Hashmap\r\n
+comment3.params=pString\ pItem
+comment3.target=void\ addItem(java.lang.String,\ Item)
+comment3.text=\r\n\ permet\ d'ajouter\ un\ item\ a\ la\ HashMap\r\n\ @param\ pString\r\n\ @param\ pItem\r\n
+comment4.params=pString
+comment4.target=void\ removeItem(java.lang.String)
+comment4.text=\r\n\ permet\ d'enlever\ un\ item\ a\ la\ HashMap\r\n\ @param\ pString\r\n
+comment5.params=
+comment5.target=java.lang.String\ getItemString()
+comment5.text=\r\n\ permet\ de\ r\u00E9cup\u00E9rer\ la\ description\ de\ l'item\r\n\ @return\ String\r\n
+numComments=6

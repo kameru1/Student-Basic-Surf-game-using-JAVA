@@ -21,7 +21,7 @@ public class Player
     public Player(final String pName)
     {
         this.pNomPlayer=pName;
-        this.aBackRoom=new Stack();
+        this.aBackRoom = new Stack<>();
         //this.aItemSac=new HashMap(); 
         this.aPas=1;
         this.aSac=new ItemList();
@@ -51,7 +51,7 @@ public class Player
      *
      * @return HashMap
      */
-    public HashMap getItemSac(){
+    public HashMap<String, Item> getItemSac() {
         return this.aSac.getIt();
     }
 
@@ -80,10 +80,10 @@ public class Player
      *permet de retourner en arrière
      * 
      */
-    public void goBack(){
-
-        this.aCurrentRoom=aBackRoom.pop();
-
+    public void goBack() {
+        if (!this.aBackRoom.isEmpty()) {
+            this.aCurrentRoom = this.aBackRoom.pop();
+        }
     }
 
     /**
@@ -108,10 +108,10 @@ public class Player
      * accesseur de la pile backroom
      * @return Stack
      */
-    public Stack getStack(){
+    public Stack<Room> getStack() {
         return this.aBackRoom;
-
     }
+
 
     /** pour prendre l'item
      * 

@@ -23,9 +23,8 @@ public class ItemList
    * accesseur pour récupérer la hashmap
    * @return Hashmap
    */ 
-    public HashMap getIt()
-    {
-       return this.aItems;
+    public HashMap<String, Item> getIt() {
+        return this.aItems;
     }
     
         /**
@@ -51,20 +50,17 @@ public class ItemList
       /**
    * permet de récupérer la description de l'item
    * @return String
-   
-       public String getItemString()
-       {
-        String returnString="Items :\n";
-        if (this.aItems.keySet()==null)
-        {
-            return returnString+" "+"No items";    
+   */
+    public String getItemString() {
+        String returnString = "Items:\n";
+        if (this.aItems.isEmpty()) {
+            return returnString + " No items";
         }
         Set<String> keys = this.aItems.keySet();
-        for(String vS : keys){
-         returnString+=" "+vS ;
+        for (String vS : keys) {
+            returnString += " " + vS;
         }
         return returnString;
-       } 
-       */
+   }
 }
 

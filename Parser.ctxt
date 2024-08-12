@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Parser
+comment0.text=\r\nle\ parser\ poss\u00E8de\ un\ ensemble\ de\ mots\ de\ commande\ connus.\r\nIl\ v\u00E9rifie\ les\ entr\u00E9es\ de\ l\u2019utilisateur\ par\ rapport\ aux\r\ncommandes\ connues,\ et\ si\ l\u2019entr\u00E9e\ n\u2019est\ pas\ l\u2019une\ \r\ndes\ commandes\ connues,\ elle\r\nrenvoie\ comme\ message\ "inconnue".\r\n\ \r\n\ @author\ \ L.Kamel\r\n\ @version\ 2021\r\n
+comment1.params=
+comment1.target=Parser()
+comment1.text=\r\n\ Constructeur\ par\ d\u00E9faut\ qui\ cr\u00E9e\ les\ 2\ objets\ prevus\ pour\ les\ attributs\r\n
+comment2.params=pInputLine
+comment2.target=Command\ getCommand(java.lang.String)
+comment2.text=\r\n\ @param\ pInputLine\r\n\ @return\ retourne\ la\ commande\ suivante\ de\ l\u2019utilisateur\r\n
+comment3.params=
+comment3.target=java.lang.String\ getCommandString()
+comment3.text=\r\n\ affiche\ la\ liste\ des\ commandes\ valides\r\n\ @return\ String\r\n
+numComments=4

@@ -83,8 +83,8 @@ public class GameEngine
         vsanc.setExits("down",vNoir);
         vNoir.setExits("up",vsanc);
 
+        vHole21.setExits("elevator",vHolend);
         vHole21.setExits("up",vHole2);
-        vHole21.setExits("down",vHolend);
         vHolend.setExits("up", vBeach0);
         vHolend.setExits("down",vHole21);
 
@@ -116,7 +116,7 @@ public class GameEngine
 
         vBeach0bis.setItem("board1","ceci est la première planche de surf!!!",101);
         vBeach0.setItem("board2","ceci est la deuxième planche de surf!!!",50);
-        vBeach0.setItem("coquillage","uwu",0);
+        vBeach0.setItem("coquillage","brillant",0);
         vNoir.setItem("magiccookie","nani?? masaka!!",10);
     } // procédure createsRoom
 
@@ -225,7 +225,7 @@ public class GameEngine
         String vDirection= vCommand.getSecondWord();
         Room vNextRoom = this.aPlayer.getCurrentRoom().getExit (vDirection);
 
-        if(this.aPlayer.getPas()>5){
+        if(this.aPlayer.getPas()>50){
             this.aGui.println( "Stop :((" );
             return;
         }
