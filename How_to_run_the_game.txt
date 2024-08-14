@@ -1,0 +1,16 @@
+1. verify if JDK is correctly installed with these commands
+
+java -version 
+javac -version
+
+2. go to this repertory 
+
+C:\E3\kamel_surf_game_working
+
+3. to compile the game type this command
+
+javac Main.java
+
+4. to run the game type this command 
+
+java Main
